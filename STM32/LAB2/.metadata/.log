@@ -1,0 +1,60 @@
+!SESSION 2022-09-28 21:33:22.194 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-09-28 21:33:45.380
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-09-28 21:33:45.425
+!MESSAGE Log4j initialized with config file C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-09-28 21:33:48.495
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-09-28 21:34:36.340
+!MESSAGE Indexed 'lab2' (19 sources, 78 headers) in 2.09 sec: 3,647 declarations; 13,057 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.012%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-09-28 21:35:03.060
+!MESSAGE Indexed 'lab1' (19 sources, 96 headers) in 1.62 sec: 7,434 declarations; 34,390 references; 6 unresolved inclusions; 295 syntax errors; 1,051 unresolved names (2.5%)
+!SESSION 2022-09-28 21:39:07.338 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2\.cproject
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-09-28 21:39:14.814
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-09-28 21:39:14.853
+!MESSAGE Log4j initialized with config file C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-09-28 21:39:18.894
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.resources 4 368 2022-09-28 21:39:30.465
+!MESSAGE Resource '/lab1' does not exist.
+!STACK 0
+java.lang.Exception: Resource '/lab1' does not exist.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:330)
+	at org.eclipse.core.internal.resources.Project.open(Project.java:1020)
+	at org.eclipse.core.internal.resources.Project.open(Project.java:1112)
+	at com.st.stm32cube.ide.mcu.ide.ui.project.internal.MCUProjectImporter$ProjectOperation.execute(MCUProjectImporter.java:170)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.lambda$0(WorkspaceModifyOperation.java:110)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.ui.actions.WorkspaceModifyOperation.run(WorkspaceModifyOperation.java:131)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+
+!ENTRY org.eclipse.core.resources 4 77 2022-09-28 21:39:30.560
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2022-09-28 21:39:30.560
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2022-09-28 21:39:30.560
+!MESSAGE C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2 overlaps the location of another project: 'lab2'
