@@ -1762,3 +1762,7 @@
 2022-09-28 21:39:41,934 [INFO] IPUIPlugin:74 - create IPUIPlugin
 2022-09-28 21:39:41,934 [INFO] IPUIPlugin:74 - create IPUIPlugin
 2022-09-28 21:39:42,017 [INFO] OpenFileManager:333 - Restore cursor
+2022-09-30 20:24:06,016 [INFO] Activator:177 - 
+
+
+2022-09-30 20:24:06,018 [INFO] Activator:178 - !SESSION log4j initialized
