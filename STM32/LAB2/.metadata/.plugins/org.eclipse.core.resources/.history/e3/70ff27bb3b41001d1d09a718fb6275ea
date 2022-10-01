@@ -252,13 +252,6 @@ static void MX_GPIO_Init(void)
 //	getKeyInput();
 //}
 
-void updateClockBuffer () {
-	buffer [0] = hour / 10;
-	buffer [1] = hour % 10;
-	buffer [2] = min / 10;
-	buffer [3] = min % 10;
-}
-
 int buffer[4] = {1, 2, 3, 0};
 void display7SEG (int num){
 	char led7seg[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
