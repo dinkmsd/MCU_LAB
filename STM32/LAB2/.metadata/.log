@@ -275,3 +275,36 @@ javax.net.ssl.SSLPeerUnverifiedException: Certificate for <sw-center.st.com> doe
 	at org.eclipse.ecf.provider.filetransfer.httpclient45.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:991)
 	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:76)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 1 0 2022-09-30 21:05:41.527
+!MESSAGE Indexed 'mcu_lab2' (21 sources, 98 headers) in 2.29 sec: 7,458 declarations; 35,206 references; 6 unresolved inclusions; 295 syntax errors; 1,132 unresolved names (2.6%)
+!SESSION 2022-10-01 09:11:02.068 -----------------------------------------------
+eclipse.buildId=Version 1.7.0
+java.version=11.0.10
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_GB
+Framework arguments:  C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2022-10-01 09:11:11.800
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2022-10-01 09:11:11.885
+!MESSAGE Log4j initialized with config file C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2022-10-01 09:11:21.952
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.resources 4 77 2022-10-01 09:11:22.157
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2022-10-01 09:11:22.157
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2022-10-01 09:11:22.157
+!MESSAGE C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2 overlaps the location of another project: 'lab2'
+
+!ENTRY org.eclipse.core.resources 4 77 2022-10-01 09:22:55.453
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2022-10-01 09:22:55.453
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2022-10-01 09:22:55.453
+!MESSAGE C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2 overlaps the location of another project: 'lab2'
