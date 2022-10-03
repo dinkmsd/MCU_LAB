@@ -1,13 +1,6 @@
-10:31:22 **** Incremental Build of configuration Debug for project lab2 ****
+02:21:38 **** Incremental Build of configuration Debug for project lab2 ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:113:6: warning: implicit declaration of function 'setTimer1' [-Wimplicit-function-declaration]
-  113 |      setTimer1(200);
-      |      ^~~~~~~~~
-../Core/Src/main.c:114:10: warning: implicit declaration of function 'setTimer2' [-Wimplicit-function-declaration]
-  114 |          setTimer2(300);
-      |          ^~~~~~~~~
 arm-none-eabi-gcc -o "lab2.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\xanlo\Desktop\MCU_LAB\MCU_LAB\STM32\LAB2\lab2\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab2.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: lab2.elf
  
@@ -16,7 +9,7 @@ arm-none-eabi-objdump -h -S  lab2.elf  > "lab2.list"
 arm-none-eabi-objcopy  -O ihex  lab2.elf  "lab2.hex"
 arm-none-eabi-objcopy  -O binary  lab2.elf  "lab2.bin"
    text	   data	    bss	    dec	    hex	filename
-   7444	     40	   1664	   9148	   23bc	lab2.elf
+   7868	     52	   1668	   9588	   2574	lab2.elf
 Finished building: default.size.stdout
  
 Finished building: lab2.hex
@@ -26,5 +19,5 @@ Finished building: lab2.bin
 Finished building: lab2.list
  
 
-10:31:22 Build Finished. 0 errors, 2 warnings. (took 536ms)
+02:21:38 Build Finished. 0 errors, 0 warnings. (took 594ms)
 
