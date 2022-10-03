@@ -197,7 +197,6 @@ int main(void)
   setTimer2(tSEG7);
   while (1)
   {
-	  //LED & DOT
 	  if (timer0_flag == 1) {
 			HAL_GPIO_TogglePin (GPIOA , GPIO_PIN_4 | GPIO_PIN_5 );
 			setTimer0(tLed);
@@ -226,7 +225,7 @@ int main(void)
 		  }
 		  setTimer2(tSEG7);
 	  }
-	  //Clock
+
 	  switch (time_State){
 	  case 0:
 		  second ++;
