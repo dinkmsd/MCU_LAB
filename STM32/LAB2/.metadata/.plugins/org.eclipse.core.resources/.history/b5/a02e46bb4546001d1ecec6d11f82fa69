@@ -105,8 +105,8 @@ int main(void)
 	  if (timer0_flag == 1) {
 		  if (i > 7){
 			  i = 0;
-			  tmp++;
-			  if (tmp > 7) tmp = 0;
+//			  tmp++;
+//			  if (tmp > 7) tmp = 0;
 		  }
 		  setTimer0(2);
 		  updateLEDMatrix(i);
@@ -253,45 +253,85 @@ static void MX_GPIO_Init(void)
 const int MAX_LED_MATRIX = 8;
 int index_led_matrix = 0;
 uint16_t matrix_buffer[8] = {0x0700, 0xEB00, 0xED00, 0xEE00, 0xEE00, 0xED00, 0xEB00, 0x0700};
+
 void updateLEDMatrix(int index){
     switch (index){
         case 0:
         	GPIOA->ODR = ~(0x0100);
-		    GPIOB->ODR = matrix_buffer[(0+tmp)%8];
+		    GPIOB->ODR = matrix_buffer[0];
             break;
         case 1:
         	GPIOA->ODR = ~(0x0200);
-			GPIOB->ODR = matrix_buffer[(1+tmp)%8];
+			GPIOB->ODR = matrix_buffer[1];
             break;
         case 2:
         	GPIOA->ODR = ~(0x0400);
-			GPIOB->ODR = matrix_buffer[(2+tmp)%8];
+			GPIOB->ODR = matrix_buffer[2];
             break;
         case 3:
         	GPIOA->ODR = ~(0x0800);
-			GPIOB->ODR = matrix_buffer[(3+tmp)%8];
+			GPIOB->ODR = matrix_buffer[3];
             break;
         case 4:
         	GPIOA->ODR = ~(0x1000);
-			GPIOB->ODR = matrix_buffer[(4+tmp)%8];
+			GPIOB->ODR = matrix_buffer[4];
             break;
         case 5:
         	GPIOA->ODR = ~(0x2000);
-			GPIOB->ODR = matrix_buffer[(5+tmp)%8];
+			GPIOB->ODR = matrix_buffer[5];
             break;
         case 6:
         	GPIOA->ODR = ~(0x4000);
-			GPIOB->ODR = matrix_buffer[(6+tmp)%8];
+			GPIOB->ODR = matrix_buffer[6];
             break;
         case 7:
         	GPIOA->ODR = ~(0x8000);
-			GPIOB->ODR = matrix_buffer[(7+tmp)%8];
+			GPIOB->ODR = matrix_buffer[7];
             break;
         default:
             break;
     }
 
 }
+//void updateLEDMatrix(int index){
+//    switch (index){
+//        case 0:
+//        	GPIOA->ODR = ~(0x0100);
+//		    GPIOB->ODR = matrix_buffer[(0+tmp)%8];
+//            break;
+//        case 1:
+//        	GPIOA->ODR = ~(0x0200);
+//			GPIOB->ODR = matrix_buffer[(1+tmp)%8];
+//            break;
+//        case 2:
+//        	GPIOA->ODR = ~(0x0400);
+//			GPIOB->ODR = matrix_buffer[(2+tmp)%8];
+//            break;
+//        case 3:
+//        	GPIOA->ODR = ~(0x0800);
+//			GPIOB->ODR = matrix_buffer[(3+tmp)%8];
+//            break;
+//        case 4:
+//        	GPIOA->ODR = ~(0x1000);
+//			GPIOB->ODR = matrix_buffer[(4+tmp)%8];
+//            break;
+//        case 5:
+//        	GPIOA->ODR = ~(0x2000);
+//			GPIOB->ODR = matrix_buffer[(5+tmp)%8];
+//            break;
+//        case 6:
+//        	GPIOA->ODR = ~(0x4000);
+//			GPIOB->ODR = matrix_buffer[(6+tmp)%8];
+//            break;
+//        case 7:
+//        	GPIOA->ODR = ~(0x8000);
+//			GPIOB->ODR = matrix_buffer[(7+tmp)%8];
+//            break;
+//        default:
+//            break;
+//    }
+//
+//}
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	timerRun();
 }
