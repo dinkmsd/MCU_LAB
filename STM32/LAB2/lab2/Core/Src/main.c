@@ -57,97 +57,8 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//void display7SEG (int led, int num){
-//		if (led == 0){
-//			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-//			  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-//		} else if  (led == 1){
-//			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
-//			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
-//		}
-//		char led7seg[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
-//		for (int i = 0; i < 7; i++){
-//			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 << i, (led7seg[num] >> i) & 1);
-//		}
-//	}
-
-int hour = 15, minute = 8, second = 50;
-
-
-
-int buffer[4] = {1, 2, 3, 0};
-void updateClockBuffer () {
-	buffer [0] = hour / 10;
-	buffer [1] = hour % 10;
-	buffer [2] = minute / 10;
-	buffer [3] = minute % 10;
-}
-
-void display7SEG (int num){
-	char led7seg[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
-		for (int i = 0; i < 7; i++){
-			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0 << i, (led7seg[num] >> i) & 1);
-		}
-}
-void handle7SEG (int idx){
-	switch (idx){
-	case 0:
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-		display7SEG(buffer[idx]);
-		break;
-	case 1:
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
-		display7SEG(buffer[idx]);
-		break;
-	case 2:
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_9, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-		display7SEG(buffer[idx]);
-		break;
-	case 3:
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-		display7SEG(buffer[idx]);
-		break;
-	}
-}
-
-
-const int MAX_LED = 4;
-int index_led = 0;
-int led_buffer[4] = {1, 2, 3, 4};
-void update7SEG(int index){
-    switch (index){
-        case 0:
-            //Display the first 7SEG with led_buffer[0]
-        	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-			display7SEG(buffer[index]);
-            break;
-        case 1:
-            //Display the second 7SEG with led_buffer[1]
-        	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
-			display7SEG(buffer[index]);
-			break;
-        case 2:
-            //Display the third 7SEG with led_buffer[2]
-        	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_9, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
-			display7SEG(buffer[index]);
-			break;
-        case 3:
-            //Display the forth 7SEG with led_buffer[3]
-        	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8, GPIO_PIN_SET);
-			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
-        	display7SEG(buffer[index]);
-        	break;
-        default:
-            break;
-    }
-}
+void updateLEDMatrix(int index);
+int tmp = 0;
 
 /* USER CODE END 0 */
 
@@ -186,70 +97,21 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
-  int tLed = 100;
-  int tVal = 100;
-  int tSEG7 = 50;
-  int time_State = 0;
-  int index = 0;
-  setTimer0(tLed);
-  setTimer1(tVal);
-  setTimer2(tSEG7);
+  setTimer0(2);
+    int i = 0;
   while (1)
   {
-	  //LED & DOT
-	  if (timer0_flag == 1) {
-			HAL_GPIO_TogglePin (GPIOA , GPIO_PIN_4 | GPIO_PIN_5 );
-			setTimer0(tLed);
-	  }
 
-//	  if (timer1_flag == 1){
-//		  second ++;
-//		  if (second >= 60){
-//			  second = 0;
-//			  minute++;
-//		  }
-//		  if(minute >= 60){
-//			  minute = 0;
-//			  hour++;
-//		  }
-//		  if(hour >=24){
-//			  hour = 0;
-//		  }
-//		  setTimer1(tVal);
-//	  }
-	  // 7SEG
-	  if (timer2_flag == 1){
-		  update7SEG(index++);
-		  if (index >= MAX_LED) {
-			  index = 0;
+	  if (timer0_flag == 1) {
+		  if (i > 7){
+			  i = 0;
+//			  tmp++;
+//			  if (tmp > 7) tmp = 0;
 		  }
-		  setTimer2(tSEG7);
+		  setTimer0(2);
+		  updateLEDMatrix(i);
+		  i++;
 	  }
-	  //Clock
-	  switch (time_State){
-	  case 0:
-		  second ++;
-		  setTimer1(tVal);
-		  time_State = 1;
-		  break;
-	  case 1:
-		  if (timer1_flag == 1){
-			  if (second >= 60){
-				  second = 0;
-				  minute++;
-			  }
-			  if(minute >= 60){
-				  minute = 0;
-				  hour++;
-			  }
-			  if(hour >=24){
-				  hour = 0;
-			  }
-			  time_State = 0;
-		  }
-	  }
-	  updateClockBuffer();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -311,7 +173,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 7999;
+  htim2.Init.Prescaler = 799;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 9;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -352,25 +214,34 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7
-                          |GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
+                          |GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11
+                          |GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
-                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10
+                          |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14
+                          |GPIO_PIN_15|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5
+                          |GPIO_PIN_6|GPIO_PIN_8|GPIO_PIN_9, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PA4 PA5 PA6 PA7
-                           PA8 PA9 */
+                           PA8 PA9 PA10 PA11
+                           PA12 PA13 PA14 PA15 */
   GPIO_InitStruct.Pin = GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6|GPIO_PIN_7
-                          |GPIO_PIN_8|GPIO_PIN_9;
+                          |GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11
+                          |GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14|GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB0 PB1 PB2 PB3
-                           PB4 PB5 PB6 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_3
-                          |GPIO_PIN_4|GPIO_PIN_5|GPIO_PIN_6;
+  /*Configure GPIO pins : PB0 PB1 PB2 PB10
+                           PB11 PB12 PB13 PB14
+                           PB15 PB3 PB4 PB5
+                           PB6 PB8 PB9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_10
+                          |GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14
+                          |GPIO_PIN_15|GPIO_PIN_3|GPIO_PIN_4|GPIO_PIN_5
+                          |GPIO_PIN_6|GPIO_PIN_8|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -379,34 +250,89 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+const int MAX_LED_MATRIX = 8;
+int index_led_matrix = 0;
+uint16_t matrix_buffer[8] = {0x0700, 0xEB00, 0xED00, 0xEE00, 0xEE00, 0xED00, 0xEB00, 0x0700};
 
-//int switch_time = 50;
-//int counter = 100;
-//int status_LED = 0;
-//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-//	timerRun();
-//	getKeyInput();
+void updateLEDMatrix(int index){
+    switch (index){
+        case 0:
+        	GPIOA->ODR = ~(0x0100);
+		    GPIOB->ODR = matrix_buffer[0];
+            break;
+        case 1:
+        	GPIOA->ODR = ~(0x0200);
+			GPIOB->ODR = matrix_buffer[1];
+            break;
+        case 2:
+        	GPIOA->ODR = ~(0x0400);
+			GPIOB->ODR = matrix_buffer[2];
+            break;
+        case 3:
+        	GPIOA->ODR = ~(0x0800);
+			GPIOB->ODR = matrix_buffer[3];
+            break;
+        case 4:
+        	GPIOA->ODR = ~(0x1000);
+			GPIOB->ODR = matrix_buffer[4];
+            break;
+        case 5:
+        	GPIOA->ODR = ~(0x2000);
+			GPIOB->ODR = matrix_buffer[5];
+            break;
+        case 6:
+        	GPIOA->ODR = ~(0x4000);
+			GPIOB->ODR = matrix_buffer[6];
+            break;
+        case 7:
+        	GPIOA->ODR = ~(0x8000);
+			GPIOB->ODR = matrix_buffer[7];
+            break;
+        default:
+            break;
+    }
+
+}
+//void updateLEDMatrix(int index){
+//    switch (index){
+//        case 0:
+//        	GPIOA->ODR = ~(0x0100);
+//		    GPIOB->ODR = matrix_buffer[(0+tmp)%8];
+//            break;
+//        case 1:
+//        	GPIOA->ODR = ~(0x0200);
+//			GPIOB->ODR = matrix_buffer[(1+tmp)%8];
+//            break;
+//        case 2:
+//        	GPIOA->ODR = ~(0x0400);
+//			GPIOB->ODR = matrix_buffer[(2+tmp)%8];
+//            break;
+//        case 3:
+//        	GPIOA->ODR = ~(0x0800);
+//			GPIOB->ODR = matrix_buffer[(3+tmp)%8];
+//            break;
+//        case 4:
+//        	GPIOA->ODR = ~(0x1000);
+//			GPIOB->ODR = matrix_buffer[(4+tmp)%8];
+//            break;
+//        case 5:
+//        	GPIOA->ODR = ~(0x2000);
+//			GPIOB->ODR = matrix_buffer[(5+tmp)%8];
+//            break;
+//        case 6:
+//        	GPIOA->ODR = ~(0x4000);
+//			GPIOB->ODR = matrix_buffer[(6+tmp)%8];
+//            break;
+//        case 7:
+//        	GPIOA->ODR = ~(0x8000);
+//			GPIOB->ODR = matrix_buffer[(7+tmp)%8];
+//            break;
+//        default:
+//            break;
+//    }
+//
 //}
-
-
-
-
-
-int counter = 100;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	if (htim->Instance == TIM2){
-		counter --;
-	}
-//	if (counter == 50 || counter == 0){
-//		if (counter == 0) {
-//			counter = 100;
-//			HAL_GPIO_TogglePin (GPIOA , GPIO_PIN_4 | GPIO_PIN_5 );
-//		}
-//		update7SEG(index_led++);
-//		if (index_led >= MAX_LED){
-//			index_led = 0;
-//		}
-//	}
 	timerRun();
 }
 /* USER CODE END 4 */
